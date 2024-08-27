@@ -76,7 +76,7 @@ def get_od_sandbox_image(base_image: str, docker_client: docker.DockerClient) ->
     If the sandbox image is not found, it will be built.
     """
     # OpenDevin's offcial sandbox already contains the required dependencies for OpenDevin.
-    if 'ghcr.io/opendevin/sandbox' in base_image:
+    if 'ghcr.chenby.cn/opendevin/sandbox' in base_image:
         return base_image
 
     new_image_name = _get_new_image_name(base_image)

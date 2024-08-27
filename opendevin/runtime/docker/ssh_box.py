@@ -348,14 +348,18 @@ class DockerSSHBox(Sandbox):
                 )
             # check the miniforge3 directory exist
             exit_code, logs = self.container.exec_run(
-                ['/bin/bash', '-c', '[ -d "/opendevin/miniforge3" ] && exit 0 || exit 1'],
+                [
+                    '/bin/bash',
+                    '-c',
+                    '[ -d "/opendevin/miniforge3" ] && exit 0 || exit 1',
+                ],
                 workdir=self.sandbox_workspace_dir,
                 environment=self._env,
             )
             if exit_code != 0:
                 if exit_code == 1:
                     raise Exception(
-                        f'OPENDEVIN_PYTHON_INTERPRETER is not usable. Please pull the latest Docker image: docker pull ghcr.io/opendevin/sandbox:main'
+                        'OPENDEVIN_PYTHON_INTERPRETER is not usable. Please pull the latest Docker image: docker pull ghcr.io/opendevin/sandbox:main'
                     )
                 else:
                     raise Exception(
@@ -670,7 +674,7 @@ class DockerSSHBox(Sandbox):
 
     @property
     def use_host_network(self):
-        return config.use_host_network
+        return config.use_host_network  # default as 'False'
 
     def is_container_running(self):
         try:

@@ -81,7 +81,7 @@ async def main(
         )
         llm = LLM(args.model_name)
 
-    AgentCls: Type[Agent] = Agent.get_cls(args.agent_cls)
+    AgentCls: Type[Agent] = Agent.get_cls(args.agent_cls)  # todo
     agent = AgentCls(llm=llm)
 
     event_stream = EventStream('main')
